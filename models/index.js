@@ -1,7 +1,10 @@
 // import the Sequelize module
 const Sequelize = require('sequelize');
 // connect to postgres database
-const db = new Sequelize('postgres://localhost:5432/wikistack');
+// add the logging prop with false to elimainate the SQL command text
+const db = new Sequelize('postgres://localhost:5432/wikistack', { 
+  logging: false 
+});
 
 const Page = db.define('page', {
   title: { 
@@ -29,6 +32,5 @@ const User = db.define('user', {
 });
 
 module.exports = {
-  Page, 
-  User
+  db
 };

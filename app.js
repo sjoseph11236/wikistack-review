@@ -5,7 +5,7 @@ const app = express();
 // A module to log middleware
 const morgan = require('morgan');
 const path = require('path');
-const { Page, User } = require('./models');
+const { db } = require('./models');
 
 // // verify the connection to the database
 // db.authenticate().then(() => { 
@@ -35,12 +35,16 @@ app.get('/', (req, res ) => {
   res.send('Hello World1134123413');
 });
 
+const init = async () => {
+  // syncing models to the database
+  // await Page.sync();
+  // await Page.sync();
+  // this drops all tables then recreates them based on our JS definitions
+  await db.sync({force: true});
+   // Use the listen method to access the port. 
+  app.listen(PORT, () => {
+    console.log(`listening on PORT: ${PORT}`);
+  });
+}
 
-
-// Use the listen method to access the port. 
-app.listen(PORT, () => {
-  console.log(`listening on PORT: ${PORT}`);
-});
-
-
-//
+init();
