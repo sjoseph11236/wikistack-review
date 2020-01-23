@@ -11,8 +11,9 @@ const morgan = require('morgan');
 
 // or
 
-// 
+// parases request with type json
 app.use(express.json());
+// parases request with type irlencoded
 app.use(express.urlencoded());
 // use the logging middleware for HTTP request called morgan
 app.use(morgan('dev'));
