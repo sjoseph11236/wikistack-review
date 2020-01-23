@@ -17,12 +17,13 @@ app.use(express.json());
 app.use(express.urlencoded());
 // use the logging middleware for HTTP request called morgan
 app.use(morgan('dev'));
+app.use(express.static('./public'));
 // identify the target port
-const PORT = 1337;
+const PORT = 3000;
 
 // Create a get route to root patth that responds with hello world.
 app.get('/', (req, res ) => {
-  res.send('Hello World');
+  res.send('Hello World1134123413');
 });
 
 
