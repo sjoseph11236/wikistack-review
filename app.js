@@ -5,6 +5,12 @@ const app = express();
 // A module to log middleware
 const morgan = require('morgan');
 const path = require('path');
+const { Page, User } = require('./models');
+
+// // verify the connection to the database
+// db.authenticate().then(() => { 
+//   console.log('connected to database');
+// })
 // const bodyParser = require('body-parser');
 
 // middleware that allows us to read the body
