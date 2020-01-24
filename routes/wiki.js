@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { Page } = require("../models");
-const { addPage } = require('../views');
+const { addPage , wikiPage } = require('../views');
 
 router.get('/', async (req, res, next) => {
   try {
@@ -32,7 +32,7 @@ router.get('/:slug', async (req, res, next) => {
       }
     })
   
-    res.json(page);
+    res.send(wikiPage(page));
   } catch (error) {
     next(error);
     console.log('The error is ', error);
