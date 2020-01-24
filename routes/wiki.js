@@ -10,8 +10,13 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-router.post('/', async () => {
-
+router.post('/', async (req, res, next) => {
+  try {
+    res.json(req.body);
+  } catch (error) {
+    next(error);
+    console.log('The error is ', error);
+  }
 });
 
 router.get('/add', async (req, res, next) => {
