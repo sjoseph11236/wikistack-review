@@ -23,6 +23,14 @@ router.get('/add', async (req, res, next) => {
   }
 });
 
+router.get('/:slug', (req, res, next) => { 
+  try {
+    res.send(`hit dynamic rout at ${req.params.slug}`)
+  } catch (error) {
+    next(error);
+    console.log('The error is ', error);
+  }
+});
 
 router.post('/', async (req, res, next) => {
   try {
