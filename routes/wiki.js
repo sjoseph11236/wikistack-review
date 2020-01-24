@@ -12,6 +12,18 @@ router.get('/', async (req, res, next) => {
   }
 });
 
+
+
+router.get('/add', async (req, res, next) => {
+  try {
+    res.send(addPage());
+  } catch (error) {
+    next(error)
+    console.log('The error is ', error);
+  }
+});
+
+
 router.post('/', async (req, res, next) => {
   try {
 
@@ -20,19 +32,12 @@ router.post('/', async (req, res, next) => {
       content: req.body.content
     });
 
+    console.log(req.body)
+
     await page.save();
-    res.redirect('/')
+    res.redirect('/wiki/' + page.slug)
   } catch (error) {
     next(error);
-    console.log('The error is ', error);
-  }
-});
-
-router.get('/add', async (req, res, next) => {
-  try {
-    res.send(addPage());
-  } catch (error) {
-    next(error)
     console.log('The error is ', error);
   }
 });
