@@ -7,6 +7,7 @@ const morgan = require('morgan');
 const path = require('path');
 const { db } = require('./models');
 
+
 // // verify the connection to the database
 // db.authenticate().then(() => { 
 //   console.log('connected to database');
@@ -21,12 +22,17 @@ const { db } = require('./models');
 // use the logging middleware for HTTP request called morgan
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname,"./public")));
-
+// parases request with type urlencoded
+app.use(express.urlencoded({extended: false}));
 // parases request with type json
 app.use(express.json());
-// parases request with type irlencoded
-app.use(express.urlencoded({extended: false}));
 
+app.use('/wiki', require('./routes/wiki'));
+app.use('/users', require('./routes/users'));
+
+app.get('/', (req, res) => {
+  res.redirect('/wiki');
+});
 // identify the target port
 const PORT = 3000;
 
