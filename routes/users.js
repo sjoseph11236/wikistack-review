@@ -1,4 +1,11 @@
 const express = require('express');
 const router = express.Router();
 
-module.export = router;
+router.get('/', async () => {
+  
+});
+
+
+
+
+module.exports = router;
