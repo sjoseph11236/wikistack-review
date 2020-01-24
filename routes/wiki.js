@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const { Page } = require("../models");
-const { addPage , wikiPage } = require('../views');
+const { addPage , wikiPage, main } = require('../views');
 
 router.get('/', async (req, res, next) => {
   try {
-    console.log('HEREEEE ')
+    const pages = await Page.findAll();
+    res.send(main(pages))
   } catch (error) {
     next(error)
     console.log('The error is ', error);
@@ -50,7 +51,7 @@ router.post('/', async (req, res, next) => {
     console.log(req.body)
 
     await page.save();
-    res.redirect('/wiki/' + page.slug)
+    res.redirect(`/wiki/${page.slug}`)
   } catch (error) {
     next(error);
     console.log('The error is ', error);
