@@ -6,7 +6,7 @@ router.get('/', async (req, res, next) => {
   try {
   } catch (error) {
     next(error)
-    console.log('The error is ', error);
+    console.log('The error is me  ', error);
   }
 });
 
