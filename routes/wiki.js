@@ -23,9 +23,16 @@ router.get('/add', async (req, res, next) => {
   }
 });
 
-router.get('/:slug', (req, res, next) => { 
+router.get('/:slug', async (req, res, next) => { 
   try {
-    res.send(`hit dynamic route at ${req.params.slug}`)
+    const { slug } = req.params;
+    const page = await Page.findOne({
+      where: { 
+        slug
+      }
+    })
+  
+    res.json(page);
   } catch (error) {
     next(error);
     console.log('The error is ', error);
