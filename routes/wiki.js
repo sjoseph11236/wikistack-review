@@ -1,18 +1,27 @@
 const express = require('express');
 const router = express.Router();
+const { Page } = require("../models");
 const { addPage } = require('../views');
 
 router.get('/', async (req, res, next) => {
   try {
+    console.log('HEREEEE ')
   } catch (error) {
     next(error)
-    console.log('The error is me  ', error);
+    console.log('The error is ', error);
   }
 });
 
 router.post('/', async (req, res, next) => {
   try {
-    res.json(req.body);
+
+    const page = new Page({
+      title: req.body.name,
+      content: req.body.content
+    });
+
+    await page.save();
+    res.redirect('/')
   } catch (error) {
     next(error);
     console.log('The error is ', error);
